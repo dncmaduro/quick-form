@@ -1,12 +1,16 @@
+import { SignInForm } from '@/components/home/SignInForm'
 import { SignUpForm } from '@/components/home/SignUpForm'
-import { AppShell, Flex, Text, Title } from '@mantine/core'
+import { AppShell, Button, Flex, Text, Title } from '@mantine/core'
 import { createFileRoute } from '@tanstack/react-router'
+import { useState } from 'react'
 
 export const Route = createFileRoute('/')({
   component: RouteComponent
 })
 
 function RouteComponent() {
+  const [isSignIn, setIsSignIn] = useState(false)
+
   return (
     <AppShell className="h-screen w-screen">
       <Flex h="100%">
@@ -31,8 +35,13 @@ function RouteComponent() {
           align="center"
           justify="center"
           miw={600}
+          direction="column"
+          gap={16}
         >
-          <SignUpForm />
+          {isSignIn ? <SignInForm /> : <SignUpForm />}
+          <Button variant="subtle" onClick={() => setIsSignIn(!isSignIn)}>
+            {isSignIn ? 'Or create new account' : 'Or sign in your account'}
+          </Button>
         </Flex>
       </Flex>
     </AppShell>
