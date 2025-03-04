@@ -1,9 +1,9 @@
-export type SignUpRequest = {
+export interface SignUpRequest {
   email: string
   password: string
 }
 
-export type SignInRequest = {
+export interface SignInRequest {
   email: string
   password: string
 }

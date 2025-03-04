@@ -1,4 +1,4 @@
-import { SignInRequest, SignUpRequest } from '@/types/authentication'
+import { SignInRequest, SignUpRequest } from './models'
 import { supabaseClient } from '@/utils/supabase'
 
 export const useAuthentication = () => {
