@@ -11,10 +11,10 @@ import { useForm } from 'react-hook-form'
 import { QIcon } from '../common/QIcon'
 import { useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
-import { SignUpRequest } from '@/types/authentication'
 import { useAuthentication } from '@/hooks/useAuthentication'
 import { AuthError } from '@supabase/supabase-js'
 import { QToast } from '../common/QToast'
+import { SignUpRequest } from '@/hooks/models'
 
 type SignUpType = {
   email: string
@@ -55,7 +55,7 @@ export const SignUpForm = () => {
     }
   }
 
-  const { mutate } = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationFn: (req: SignUpRequest) => signUp(req),
     onSuccess: () => {
       QToast.success({
@@ -164,7 +164,7 @@ export const SignUpForm = () => {
                 </ActionIcon>
               }
             />
-            <Button size="md" type="submit" radius="sm">
+            <Button size="md" type="submit" radius="sm" loading={isPending}>
               Sign up
             </Button>
           </Stack>
