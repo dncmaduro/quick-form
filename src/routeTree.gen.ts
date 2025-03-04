@@ -12,7 +12,9 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
-import { Route as HomeIndexImport } from './routes/home/index'
+import { Route as YourFormsIndexImport } from './routes/your-forms/index'
+import { Route as TemplatesIndexImport } from './routes/templates/index'
+import { Route as AppIndexImport } from './routes/app/index'
 
 // Create/Update Routes
 
@@ -22,9 +24,21 @@ const IndexRoute = IndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const HomeIndexRoute = HomeIndexImport.update({
-  id: '/home/',
-  path: '/home/',
+const YourFormsIndexRoute = YourFormsIndexImport.update({
+  id: '/your-forms/',
+  path: '/your-forms/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const TemplatesIndexRoute = TemplatesIndexImport.update({
+  id: '/templates/',
+  path: '/templates/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AppIndexRoute = AppIndexImport.update({
+  id: '/app/',
+  path: '/app/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -39,11 +53,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/home/': {
-      id: '/home/'
-      path: '/home'
-      fullPath: '/home'
-      preLoaderRoute: typeof HomeIndexImport
+    '/app/': {
+      id: '/app/'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof AppIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/templates/': {
+      id: '/templates/'
+      path: '/templates'
+      fullPath: '/templates'
+      preLoaderRoute: typeof TemplatesIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/your-forms/': {
+      id: '/your-forms/'
+      path: '/your-forms'
+      fullPath: '/your-forms'
+      preLoaderRoute: typeof YourFormsIndexImport
       parentRoute: typeof rootRoute
     }
   }
@@ -53,37 +81,47 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/home': typeof HomeIndexRoute
+  '/app': typeof AppIndexRoute
+  '/templates': typeof TemplatesIndexRoute
+  '/your-forms': typeof YourFormsIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/home': typeof HomeIndexRoute
+  '/app': typeof AppIndexRoute
+  '/templates': typeof TemplatesIndexRoute
+  '/your-forms': typeof YourFormsIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
-  '/home/': typeof HomeIndexRoute
+  '/app/': typeof AppIndexRoute
+  '/templates/': typeof TemplatesIndexRoute
+  '/your-forms/': typeof YourFormsIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/home'
+  fullPaths: '/' | '/app' | '/templates' | '/your-forms'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/home'
-  id: '__root__' | '/' | '/home/'
+  to: '/' | '/app' | '/templates' | '/your-forms'
+  id: '__root__' | '/' | '/app/' | '/templates/' | '/your-forms/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  HomeIndexRoute: typeof HomeIndexRoute
+  AppIndexRoute: typeof AppIndexRoute
+  TemplatesIndexRoute: typeof TemplatesIndexRoute
+  YourFormsIndexRoute: typeof YourFormsIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  HomeIndexRoute: HomeIndexRoute,
+  AppIndexRoute: AppIndexRoute,
+  TemplatesIndexRoute: TemplatesIndexRoute,
+  YourFormsIndexRoute: YourFormsIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -97,14 +135,22 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/home/"
+        "/app/",
+        "/templates/",
+        "/your-forms/"
       ]
     },
     "/": {
       "filePath": "index.tsx"
     },
-    "/home/": {
-      "filePath": "home/index.tsx"
+    "/app/": {
+      "filePath": "app/index.tsx"
+    },
+    "/templates/": {
+      "filePath": "templates/index.tsx"
+    },
+    "/your-forms/": {
+      "filePath": "your-forms/index.tsx"
     }
   }
 }
