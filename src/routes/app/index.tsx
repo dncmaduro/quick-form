@@ -2,8 +2,8 @@ import { HomeLayout } from '@/components/layout/home'
 import { Box, Stack, TextInput, Title } from '@mantine/core'
 import { createFileRoute } from '@tanstack/react-router'
 
-export const Route = createFileRoute('/home/')({
-  component: RouteComponent
+export const Route = createFileRoute('/app/')({
+  component: RouteComponent,
 })
 
 function RouteComponent() {
